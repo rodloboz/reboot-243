@@ -14,6 +14,12 @@ CITIES = [
   }
 ]
 
+# CITIES = {
+#   "Lisbon" => "Portugal",
+#   "London" => "England",
+#   "Paris" => "France"
+# }
+
 # Lisbon is in Portugal
 # def display_cities
 #   CITIES.each_with_index do |city, index|
@@ -24,7 +30,11 @@ CITIES = [
 
 def display_cities
   CITIES.each do |city|
-    puts "#{city[:name]} is in #{city[:country]}"
+    if city.key?(:population)
+      puts "#{city[:name]} is in #{city[:country]} and its population is #{city[:population]}"
+    else
+      puts "#{city[:name]} is in #{city[:country]}"
+    end
   end
 end
 
@@ -36,9 +46,13 @@ name = gets.chomp
 puts "In which country is #{name} is located?"
 country = gets.chomp
 
+puts "What's the population in #{name}?"
+population = gets.chomp.to_i
+
 city = {
   name: name,
-  country: country
+  country: country,
+  population: population
 }
 
 CITIES << city
